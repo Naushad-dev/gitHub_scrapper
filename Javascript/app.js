@@ -1,7 +1,7 @@
 const url = "https://www.github.com/topics";
 const request = require("request");
 const cheerio = require("cheerio");
-const getReposeHtml = require("./getReposPage");
+const getReposeHtml = require("../getReposPage");
 
 request(url, cb);
 
