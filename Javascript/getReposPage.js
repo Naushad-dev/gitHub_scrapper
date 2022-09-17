@@ -1,5 +1,6 @@
 const request = require("request");
 const cheerio = require("cheerio");
+const  getIssuehtml=require("./issues")
 
 function getReposeHtml(url, topic) {
   request(url, cb);
@@ -20,6 +21,9 @@ function getReposeHtml(url, topic) {
       let linksgot = $(headingLink[i]).find("a");
       let mainheadingLink = $(linksgot).attr("href");
       console.log(mainheadingLink);
+      let issueLink=`https://www.github.com${mainheadingLink}/issues`;
+      getIssuehtml(issueLink,topic);
+
     }
     console.log("'''''''''''...................");
   }
