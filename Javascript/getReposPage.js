@@ -1,6 +1,6 @@
 const request = require("request");
 const cheerio = require("cheerio");
-const  getIssuehtml=require("./issues")
+const getIssuehtml = require("./issues");
 
 function getReposeHtml(url, topic) {
   request(url, cb);
@@ -19,11 +19,12 @@ function getReposeHtml(url, topic) {
     console.log(topic);
     for (let i = 0; i < 10; i++) {
       let linksgot = $(headingLink[i]).find("a");
-      let mainheadingLink = $(linksgot).attr("href");
-      console.log(mainheadingLink);
-      let issueLink=`https://www.github.com${mainheadingLink}/issues`;
-      getIssuehtml(issueLink,topic);
+      let mainheadingLink = $(linksgot[1]).attr("href");
+      const repoName = mainheadingLink.split("/").pop();
+      // console.log(mainheadingLink);
 
+      let issueLink = `https://www.github.com${mainheadingLink}/issues`;
+      getIssuehtml(issueLink, topic,repoName);
     }
     console.log("'''''''''''...................");
   }
